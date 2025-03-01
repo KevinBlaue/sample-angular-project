@@ -1,0 +1,21 @@
+.full-width {
+    width: 100%;
+}
+
+mat-card {
+    margin-bottom: 50px;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cipher-counter {
+    font-size: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

@@ -1,0 +1,27 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Image Generation Module</mat-card-title>
+        <mat-card-subtitle>Use the prompt to give a description of the image you want to generate</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Image Description</mat-label>
+            <textarea matInput [(ngModel)]="imageDescription" maxlength="1000"
+                placeholder="Enter the description of the image you want to generate"></textarea>
+        </mat-form-field>
+        <span class="cipher-counter">{{imageDescriptionMaxLength - imageDescription.length}} more characters</span>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-raised-button (click)="fetchImage()">Generate</button>
+    </mat-card-actions>
+</mat-card>
+@if (imageGenerated) {
+<mat-card appearance="outlined">
+    <mat-card-content>
+        <mat-card-title>Generated Image</mat-card-title>
+        <img [src]="imageUrl" alt="Generated Image" class="full-width">
+    </mat-card-content>
+</mat-card>
+} @else if (isLoading) {
+<mat-spinner style="margin:0 auto; margin-top: 50px;"></mat-spinner>
+}
