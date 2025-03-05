@@ -1,0 +1,29 @@
+name: Reset dependencies branch
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  reset_dependencies:
+    if: github.event.pull_request.merged == true && github.head_ref == 'dependencies'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          persist-credentials: false
+      - name: Reset
+        run: git reset --hard origin/main
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          force: true
+          branch: ${{ github.head_ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

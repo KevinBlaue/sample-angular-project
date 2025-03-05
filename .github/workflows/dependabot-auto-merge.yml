@@ -1,0 +1,50 @@
+name: Dependabot auto-merge
+
+on:
+  pull_request:
+    branches: [dependencies]
+
+jobs:
+  build-and-test:
+    concurrency: ${{ github.ref }}
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.18"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install npm packages
+        run: npm ci
+
+      - name: Build, test and lint
+        run: |
+          npm run build
+          npm run test
+          npm run lint
+
+  auto-merge-dependabot-pr:
+    if: github.actor == 'dependabot[bot]'
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      PR_URL: ${{ github.event.pull_request.html_url }}
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Approve Dependabot PR
+        run: gh pr review --approve $PR_URL
+
+      - name: Auto-merge Dependabot PR
+        run: gh pr merge --auto --merge $PR_URL
