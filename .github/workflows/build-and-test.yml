@@ -1,0 +1,40 @@
+name: Build and test
+on:
+  pull_request:
+    branches:
+      - main
+      - 'feature/*'
+    paths-ignore:
+      - '**.md'
+      - '.vscode/*'
+      - '.pre-commit-config.yaml'
+
+concurrency: test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.18"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install npm packages
+        run: npm ci
+
+      - name: Install xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: Build and Test
+        run: |
+          npm run build
+          xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" npm run test
+          npm run lint
