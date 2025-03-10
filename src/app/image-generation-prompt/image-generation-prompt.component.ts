@@ -5,9 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { environment } from '../../environments/environment.development';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-image-generation-prompt',
@@ -31,13 +31,17 @@ export class ImageGenerationPromptComponent {
 
   private _snackBar = inject(MatSnackBar);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public async fetchImage() {
     if (this.imageDescription.length < 50) {
-      this._snackBar.open('Description must be at least 50 characters long!', 'OK', {
-        duration: 5000,
-      });
+      this._snackBar.open(
+        'Description must be at least 50 characters long!',
+        'OK',
+        {
+          duration: 5000,
+        },
+      );
       return;
     }
 
