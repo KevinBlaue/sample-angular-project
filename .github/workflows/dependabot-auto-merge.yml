@@ -25,10 +25,15 @@ jobs:
       - name: Install npm packages
         run: npm ci
 
+      - name: Install xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
       - name: Build, test and lint
         run: |
           npm run build
-          npm run test
+          xvfb-run --auto-servernum --server-args="-screen 0 1024x768x24" npm run test
           npm run lint
 
   auto-merge-dependabot-pr:
