@@ -98,7 +98,6 @@ export default [
           groups: ["builtin", "external", ["sibling", "parent"], "index"],
         },
       ],
-
       "object-curly-spacing": ["error", "always"],
       "object-shorthand": ["warn", "properties"],
     },
