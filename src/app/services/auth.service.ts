@@ -24,15 +24,19 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  login(token: string) {
+  login(token: string, refreshToken?: string) {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.tokenKey, token);
+      if (refreshToken) {
+        localStorage.setItem('refresh-token', refreshToken);
+      }
     }
   }
 
   logout() {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem(this.tokenKey);
+      localStorage.removeItem('refresh-token');
     }
   }
 }

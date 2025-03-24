@@ -3,3 +3,7 @@
     margin-left: clamp(20px, 20vw, 400px);
     margin-right: clamp(20px, 20vw, 400px);
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
