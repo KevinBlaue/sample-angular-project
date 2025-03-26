@@ -102,4 +102,18 @@ export default [
       "object-shorthand": ["warn", "properties"],
     },
   },
+  {
+    files: ["**/*.spec.ts"],
+    languageOptions: {
+      globals: {
+        jasmine: "readonly",
+        describe: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        spyOn: "readonly",
+      },
+    },
+  },
 ];

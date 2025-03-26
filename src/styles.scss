@@ -1,18 +1,8 @@
 @use '@angular/material' as mat;
 
-html,
-body {
-    height: 100%;
-    background-color: #f5f5f5;
-    /* Heller Grauton für den Seitenhintergrund */
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 :root {
+    --font-family: 'Inter', Roboto, "Helvetica Neue", Arial, sans-serif;
+
     @include mat.toolbar-overrides((container-background-color: #3f51b5,
             /* Indigo – Hauptfarbe der Toolbar */
             container-text-color: #ffffff,
@@ -31,8 +21,22 @@ body {
             supporting-text-color: white,
             button-color: white,
         ));
-
 }
+
+html,
+body {
+    height: 100%;
+    background-color: #f5f5f5;
+    /* Heller Grauton für den Seitenhintergrund */
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    /* Font settings */
+    color: #212121;
+}
+
 
 /* Styling für MatIcons */
 .mat-icon {
@@ -72,4 +76,74 @@ body {
         background-color: #9fa8da;
         /* Hellerer Farbton für deaktivierte Buttons */
     }
+}
+
+/* Material Overrides */
+mat-toolbar {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.mat-card-title {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.mat-card-subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    color: #757575;
+}
+
+mat-label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #424242;
+}
+
+mat-error {
+    font-weight: 400;
+    font-size: 13px;
+    color: #f44336;
+}
+
+mat-button,
+button.mat-button,
+button.mat-raised-button {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Typografie für h1-h6 */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 500;
 }
