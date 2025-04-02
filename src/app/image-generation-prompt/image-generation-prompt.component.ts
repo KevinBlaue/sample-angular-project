@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-image-generation-prompt',
@@ -51,10 +51,9 @@ export class ImageGenerationPromptComponent {
 
     this.http
       .post(
-        environment.apiUrl,
+        `${environment.apiUrl}image-generation/generate`,
         { description: this.imageDescription },
         {
-          headers: { 'x-api-key': environment.apiKey },
           responseType: 'blob',
         },
       )
