@@ -1,31 +1,27 @@
 version: 2
 updates:
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'monthly'
+      interval: "monthly"
     commit-message:
-      prefix: '🤖 [GH Actions]'
-      include: 'scope'
+      prefix: "🤖 [GH Actions]"
+      include: "scope"
     open-pull-requests-limit: 5
-    target-branch: 'main'
+    target-branch: "main"
 
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '02:00'
-      timezone: 'Europe/Berlin'
-    target-branch: 'dependencies'
+      interval: "monthly"
     commit-message:
-      prefix: '🤖 [npm]'
-      include: 'scope'
+      prefix: "🤖 [npm]"
+      include: "scope"
     open-pull-requests-limit: 5
     groups:
       all-deps:
         patterns:
-          - '*'
+          - "*"
         update-types:
-          - 'minor'
-          - 'patch'
+          - "minor"
+          - "patch"
