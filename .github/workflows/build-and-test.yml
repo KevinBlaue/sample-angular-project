@@ -3,10 +3,10 @@ on:
   pull_request:
     branches:
       - main
-      - 'feature/*'
+      - "feature/*"
     paths-ignore:
-      - '**.md'
-      - '.vscode/*'
+      - "**.md"
+      - ".vscode/*"
 
 concurrency: test
 
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20.18"
+          node-version: "22.16"
           cache: "npm"
           cache-dependency-path: package-lock.json
 
